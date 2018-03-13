@@ -10,6 +10,6 @@ router.route('/lanes').post(LaneController.addLane);
 router.route('/lanes').get(LaneController.getLanes);
 
 // Delete a lane by laneId
-router.route('/lanes/:laneId').delete(LaneController.deleteLane);
+router.route('/lanes').delete(LaneController.deleteLane);
 
 export default router;

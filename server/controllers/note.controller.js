@@ -32,3 +32,29 @@ export function addNote(req, res) {
       });
   });
 }
+
+export function deleteNote(req, res) {
+  const { noteId, laneId } = req.body;
+
+  if (!noteId || !laneId) {
+    res.status(400).end();
+  }
+
+  Note.findOne({ id: noteId }).exec((err, note) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+
+    note.remove(() => {
+      Lane.findOne({ id: laneId }).exec((errLine, lane) => {
+        if (errLine) {
+          res.status(500).send(errLine);
+        }
+        const filtredNotes = lane.notes.filter(currentNote => currentNote.id !== noteId);
+        lane.notes = filtredNotes;
+        lane.save();
+        res.json(note).status(200).end();
+      });
+    });
+  });
+}
