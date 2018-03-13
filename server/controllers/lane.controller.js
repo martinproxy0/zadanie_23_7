@@ -39,8 +39,12 @@ export function deleteLane(req, res) {
       res.status(500).send(err);
     }
 
+    lane.notes.forEach((note) => {
+      note.remove();
+    });
+
     lane.remove(() => {
-      res.status(200).end();
+      res.json(lane).status(200).end();
     });
   });
 }

@@ -2,8 +2,13 @@ import Note from '../models/note';
 import Lane from '../models/lane';
 import uuid from 'uuid';
 
-export function getSomething(req, res) {
-  return res.status(200).end();
+export function getNotes(req, res) {
+  Note.find().exec((err, notes) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.json({ notes }).status(200).end();
+  });
 }
 
 export function addNote(req, res) {
