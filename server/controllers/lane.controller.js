@@ -44,3 +44,20 @@ export function deleteLane(req, res) {
     });
   });
 }
+
+export function editLane(req, res) {
+  const { laneId, newName } = req.body;
+
+  if (!laneId || !newName) {
+    res.json({ err: 'walek' }).status(400).end();
+  }
+
+  Lane.findOne({ id: laneId }).exec((err, lane) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    lane.name = newName;
+    lane.save();
+    res.json(lane).status(200).end();
+  });
+}
