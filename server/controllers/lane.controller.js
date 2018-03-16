@@ -50,7 +50,7 @@ export function deleteLane(req, res) {
 }
 
 export function editLane(req, res) {
-  const { laneId, newName } = req.body;
+  const { laneId, name: newName } = req.body;
 
   if (!laneId || !newName) {
     res.json({ err: 'walek' }).status(400).end();
