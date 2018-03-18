@@ -65,7 +65,7 @@ export function deleteNote(req, res) {
 }
 
 export function editNote(req, res) {
-  const { noteId, newTask } = req.body;
+  const { id: noteId, task: newTask } = req.body;
 
   if (!noteId || !newTask) {
     res.status(400).end();

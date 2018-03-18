@@ -38,6 +38,14 @@ export function updateNote(note) {
   };
 }
 
+export function updateNoteRequest(note) {
+  return (dispatch) => {
+    return callApi('notes/', 'put', note).then(resNote => {
+      dispatch(updateNote(resNote));
+    });
+  };
+}
+
 export function deleteNote(noteId, laneId) {
   return {
     type: DELETE_NOTE,
