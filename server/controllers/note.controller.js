@@ -39,7 +39,8 @@ export function addNote(req, res) {
 }
 
 export function deleteNote(req, res) {
-  const { noteId, laneId } = req.body;
+  const noteId = req.params.noteId;
+  const laneId = req.params.laneId;
 
   if (!noteId || !laneId) {
     res.status(400).end();
