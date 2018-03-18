@@ -38,7 +38,7 @@ export function updateLane(lane) {
 
 export function updateLaneRequest(lane) {
   return (dispatch) => {
-    return callApi('lanes/', 'post', lane).then(resLane => {
+    return callApi('lanes/', 'put', lane).then(resLane => {
       dispatch(updateLane(resLane));
     });
   };

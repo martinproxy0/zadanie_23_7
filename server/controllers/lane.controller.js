@@ -55,7 +55,7 @@ export function deleteLane(req, res) {
 }
 
 export function editLane(req, res) {
-  const { laneId, name: newName } = req.body;
+  const { id: laneId, name: newName } = req.body;
 
   if (!laneId || !newName) {
     res.status(403).end();
